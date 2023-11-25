@@ -2,7 +2,7 @@ namespace BlazingPizza.Data;
 
 public static class SeedData
 {
-    public static void Initialize(PizzaStoreContext db)
+    public static Task InitializeAsync(PizzaStoreContext db)
     {
         var specials = new PizzaSpecial[]
         {
@@ -16,7 +16,7 @@ public static class SeedData
             new PizzaSpecial()
             {
                 Id = 2,
-                Name = "Amanada Louie's The Baconatorizor",
+                Name = "Amanda Louie's The Baconatorizor",
                 Description = "It has EVERY kind of bacon",
                 BasePrice = 11.99m,
                 ImageUrl = "img/pizzas/bacon.jpg",
@@ -68,9 +68,18 @@ public static class SeedData
                 Description = "Traditional Chinese boba milk tea",
                 BasePrice = 1.00m,
                 ImageUrl = "img/boba/boba.jpg",
+            },
+            new PizzaSpecial()
+            {
+                Id = 10,
+                Name = "Margherita Family Size",
+                Description = "24\" of pure tomatoes and basil",
+                BasePrice = 14.99m,
+                ImageUrl = "img/pizzas/margherita.jpg",
+                FixedSize = 24
             }
         };
         db.Specials.AddRange(specials);
-        db.SaveChanges();
+        return db.SaveChangesAsync();
     }
 }
